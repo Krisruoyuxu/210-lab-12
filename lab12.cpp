@@ -35,7 +35,13 @@ int main() {
     for (int i = 0; i < 15; i++){
         top15_records.at(i) = all50_records.at(i);
     }
+    cout << "Up to the year 2000, the top 15 all-time performances in the 100m race are as follows: " <<endl;
+    for (double score: top15_records){
+        cout << score <<" ";
+    }
+    cout <<endl;
 
+    
 	return 0;
 }
 
