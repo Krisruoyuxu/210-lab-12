@@ -14,14 +14,22 @@ int main() {
 
     ifstream fin("2000top50.txt");
     double mark;
-    while (fin >> mark) {
+    int i =0;
+    while (fin >> mark && i < all50_records.size()) {
         // extract the mark from the file and place them into the all50 array
-        cout << mark << " " <<endl;
+        all50_records.at(i) = mark;
+        i++;
     }
     
     for (double score: top15_records){
-        // cout << score <<endl; // we can see the original 15 elements are all 0
+        cout << score <<endl; // we can see the original 15 elements are all 0
     }
+
+    for (double score: all50_records){
+        cout << score <<endl; // we can see what's in the all50_records array now. (all elements from the 2020top50 file)
+    }
+
+    
 
 	return 0;
 }
