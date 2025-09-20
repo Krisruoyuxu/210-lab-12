@@ -29,7 +29,12 @@ int main() {
         cout << score <<endl; // we can see what's in the all50_records array now. (all elements from the 2020top50 file)
     }
 
-    
+
+    cout << "Then, sort the 50 records and add the top15 into our top15_records array." <<endl;
+    sort(all50_records.begin(), all50_records.end());// sort the top 50 scores
+    for (int i = 0; i < 15; i++){
+        top15_records.at(i) = all50_records.at(i);
+    }
 
 	return 0;
 }
