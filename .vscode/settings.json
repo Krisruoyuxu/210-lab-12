@@ -2,6 +2,7 @@
     "files.associations": {
         "*.dbclient-js": "javascript",
         "array": "cpp",
-        "ostream": "cpp"
+        "ostream": "cpp",
+        "iosfwd": "cpp"
     }
 }

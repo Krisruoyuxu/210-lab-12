@@ -20,7 +20,8 @@ int main() {
         all50_records.at(i) = mark;
         i++;
     }
-    
+    fin.close();
+
     for (double score: top15_records){
         cout << score <<endl; // we can see the original 15 elements are all 0
     }
@@ -41,8 +42,16 @@ int main() {
     }
     cout <<endl;
 
+    fin.open("2010top50.txt"); // continue and update the data in the all50_records, import them from 2010 file
+    i = 0;
+    while (fin >> mark && i < all50_records.size()){
+        all50_records.at(i) = mark;
+        i++;
+    }
+    fin.close();
     
     
+
 	return 0;
 }
 
