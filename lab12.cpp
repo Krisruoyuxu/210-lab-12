@@ -16,11 +16,11 @@ int main() {
     double mark;
     while (fin >> mark) {
         // extract the mark from the file and place them into the all50 array
-        
+        cout << mark << " " <<endl;
     }
     
     for (double score: top15_records){
-        cout << score <<endl; // we can see the original 15 elements are all 0
+        // cout << score <<endl; // we can see the original 15 elements are all 0
     }
 
 	return 0;
