@@ -16,6 +16,7 @@ int main() {
 	
     array<double, top15_size> top15_records{}; // we use this array to store the final top15 records
     array<double, top50_size > all50_records{};
+    array<double, top15_size> temp_top15_records{};
 
     // ---- 2000 ----
     readFile("2000top50.txt", all50_records);
@@ -27,7 +28,6 @@ int main() {
     for (double score: all50_records){
         cout << score <<endl; // we can see what's in the all50_records array now. (all elements from the 2020top50 file)
     }
-
 
     cout << "Then, sort the 50 records and add the top15 into our top15_records array." << endl;
     extractTop15(all50_records, top15_records);
@@ -45,6 +45,16 @@ int main() {
     cout << "So up to the year 2010, the new top 15 all-time performances in the 100m race are as follows: ";
     print_top15(top15_records);
 
+    // ---- 2020 -----
+    readFile("2020top50.txt", all50_records);
+    extractTop15(all50_records, top15_records);
+
+    cout << "Finally up to the year 2010, the new top 15 all-time performances in the 100m race are as follows: ";
+    print_top15(top15_records);
+    cout << "The top 1's record in this world is: " << top15_records.front() <<endl;
+    cout << "The top 15's record in this world is: " << top15_records.back() <<endl;
+
+    temp_top15_records.swap(top15_records);
 
 	return 0;
 }
