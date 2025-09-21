@@ -10,6 +10,7 @@ const int top50_size  = 50; // create another one to store the data from externa
 
 void readFile(const string& filename, array<double, top50_size >& all50_records); // create a function to read the external file and move the data in it into the array
 void extractTop15(const array<double, top50_size >& all50_records, array<double, top15_size>& top15_records); 
+void print_top15(const array<double, top15_size>& top15_records);
 
 int main() {
 	
@@ -40,7 +41,9 @@ int main() {
     // ---- 2010 ----
     readFile("2010top50.txt", all50_records);
     extractTop15(all50_records, top15_records);
-    
+
+    cout << "So up to the year 2010, the new top 15 all-time performances in the 100m race are as follows: ";
+    print_top15(top15_records);
 
 
 	return 0;
@@ -64,4 +67,11 @@ void extractTop15(const array<double, top50_size>& all50_records, array<double, 
     for (int i = 0; i < top15_size; i++) {
         top15_records.at(i) = temp.at(i);
     }
+}
+
+void print_top15(const array<double, top15_size>& top15_records){
+    for (int i = 0; i < top15_size; ++i) {
+    cout << (i+1) << ". " << top15_records[i] <<endl;
+}
+    cout <<endl;
 }
