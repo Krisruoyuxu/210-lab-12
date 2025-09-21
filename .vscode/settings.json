@@ -3,6 +3,7 @@
         "*.dbclient-js": "javascript",
         "array": "cpp",
         "ostream": "cpp",
-        "iosfwd": "cpp"
+        "iosfwd": "cpp",
+        "iostream": "cpp"
     }
 }

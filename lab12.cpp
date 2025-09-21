@@ -6,21 +6,18 @@
 using namespace std;
 
 const int top15_size = 15; // our array only stores the top15 athletes in the 100m race
+const int top50_size  = 50; // create another one to store the data from external files
+
+void readFile(const string& filename, array<double, top50_size >& all50_records); // create a function to read the external file and move the data in it into the array
+void extractTop15(const array<double, top50_size >& all50_records, array<double, top15_size>& top15_records); 
 
 int main() {
 	
     array<double, top15_size> top15_records{}; // we use this array to store the final top15 records
-    array<double, 50> all50_records{};
+    array<double, top50_size > all50_records{};
 
-    ifstream fin("2000top50.txt");
-    double mark;
-    int i =0;
-    while (fin >> mark && i < all50_records.size()) {
-        // extract the mark from the file and place them into the all50 array
-        all50_records.at(i) = mark;
-        i++;
-    }
-    fin.close();
+    // ---- 2000 ----
+    readFile("2000top50.txt", all50_records);
 
     for (double score: top15_records){
         cout << score <<endl; // we can see the original 15 elements are all 0
@@ -31,27 +28,40 @@ int main() {
     }
 
 
-    cout << "Then, sort the 50 records and add the top15 into our top15_records array." <<endl;
-    sort(all50_records.begin(), all50_records.end());// sort the top 50 scores
-    for (int i = 0; i < 15; i++){
-        top15_records.at(i) = all50_records.at(i);
-    }
+    cout << "Then, sort the 50 records and add the top15 into our top15_records array." << endl;
+    extractTop15(all50_records, top15_records);
+
     cout << "Up to the year 2000, the top 15 all-time performances in the 100m race are as follows: " <<endl;
     for (double score: top15_records){
         cout << score <<" ";
     }
     cout <<endl;
 
-    fin.open("2010top50.txt"); // continue and update the data in the all50_records, import them from 2010 file
-    i = 0;
-    while (fin >> mark && i < all50_records.size()){
-        all50_records.at(i) = mark;
-        i++;
-    }
-    fin.close();
+    // ---- 2010 ----
+    readFile("2010top50.txt", all50_records);
+    extractTop15(all50_records, top15_records);
     
-    
+
 
 	return 0;
 }
 
+void readFile(const string& filename, array<double, top50_size >& all50_records){ 
+    ifstream fin(filename); // this function reads 50 marks from a text file into all50_records
+    double mark;
+    int i = 0;
+    while (fin >> mark && i < static_cast<int>(all50_records.size())) {
+        all50_records.at(i) = mark;  // bounds-checked
+        i++;
+    }
+    fin.close();
+}
+
+// This function sorts the copy of the 50 marks and copy the first 15 (fastest) into top15_records
+void extractTop15(const array<double, top50_size>& all50_records, array<double, top15_size>& top15_records) {
+    array<double, top50_size> temp = all50_records;   // copy the all50_records
+    sort(temp.begin(), temp.end());                   
+    for (int i = 0; i < top15_size; i++) {
+        top15_records.at(i) = temp.at(i);
+    }
+}
