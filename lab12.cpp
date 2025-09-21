@@ -49,7 +49,7 @@ int main() {
     readFile("2020top50.txt", all50_records);
     extractTop15(all50_records, top15_records);
 
-    cout << "Finally up to the year 2010, the new top 15 all-time performances in the 100m race are as follows: ";
+    cout << "Finally up to the year 2020, the new top 15 all-time performances in the 100m race are as follows: ";
     print_top15(top15_records);
     cout << "The top 1's record in this world is: " << top15_records.front() <<endl;
     cout << "The top 15's record in this world is: " << top15_records.back() <<endl;
@@ -72,8 +72,22 @@ int main() {
     temp_top15_records.fill(average); // print it
     for (double score: temp_top15_records) cout << score <<" ";
     cout <<endl;
+
+    double target = 9.69;
+    auto it = find(top15_records.begin(), top15_records.end(), target);
+
+    if (it != top15_records.end()) {
+        int idx = 0;
+        for (auto ptr = top15_records.begin(); ptr != it; ++ptr) {
+            idx++;  
+    }
+        cout << "Target record " << target << " found at position " << idx + 1 << endl;
+}   else {
+        cout << "Target record " << target << " not found." << endl;
+}
+        
     
-	return 0;
+     return 0;
 }
 
 void readFile(const string& filename, array<double, top50_size >& all50_records){ 
