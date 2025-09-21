@@ -53,8 +53,14 @@ int main() {
     print_top15(top15_records);
     cout << "The top 1's record in this world is: " << top15_records.front() <<endl;
     cout << "The top 15's record in this world is: " << top15_records.back() <<endl;
+    cout << "The top 1's record in this world is: " << *min_element(top15_records.begin(), top15_records.end()) << " = " <<*min_element(top15_records.rbegin(), top15_records.rend())<<endl;
+    cout << "The top 15's record in this world is: " << *max_element(top15_records.begin(), top15_records.end()) <<endl;
 
-    temp_top15_records.swap(top15_records);
+    //temp_top15_records.swap(top15_records); // swap the value in temp_top15_records(all 0) and in top15_records
+    //print_top15(temp_top15_records);
+    //print_top15(top15_records);
+
+
 
 	return 0;
 }
